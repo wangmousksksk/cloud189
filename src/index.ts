@@ -17,8 +17,8 @@ export const main = async () => {
     await spaceDraw("TASK_SIGNIN")
     await spaceDraw("TASK_SIGNIN_PHOTOS")
     const {available, capacity} = await userinfo()
-    message.info(`📈【容量提升】${new BigNumber(prevCapacity).minus(capacity).div(capacity).multipliedBy(100).toNumber()}%`)
-    message.info(`🔋【网盘容量】${toBytesUnit(available)} / ${toBytesUnit(capacity)}`)
+    message.info(`📈【容量提升】${new BigNumber(capacity).minus(prevCapacity).div(capacity).multipliedBy(100).toNumber()}%`)
+    message.info(`🔋【网盘容量】${toBytesUnit(new BigNumber(capacity).minus(available).toNumber())} / ${toBytesUnit(capacity)}`)
 
 }
 main().finally(message.finally)
