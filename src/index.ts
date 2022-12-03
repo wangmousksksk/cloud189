@@ -1,8 +1,8 @@
 import {message} from "./message"
 import {checkIn} from "./check-in"
+import {userinfo} from "./userinfo"
 import {spaceDraw} from "./space-draw"
-import {bytesToSize} from "./utils";
-import {userinfo} from "./userinfo";
+import {toBytesUnit} from "@hudiemon/utils"
 
 export const main = async () => {
     if (!process.env.COOKIE) {
@@ -15,7 +15,7 @@ export const main = async () => {
     await spaceDraw("TASK_SIGNIN")
     await spaceDraw("TASK_SIGNIN_PHOTOS")
     const {available, capacity} = await userinfo()
-    message.info(`🔋【空间容量】${bytesToSize(available)} / ${bytesToSize(capacity)}`)
+    message.info(`🔋【空间容量】${toBytesUnit(available)} / ${toBytesUnit(capacity)}`)
 
 }
 main().finally(message.finally)

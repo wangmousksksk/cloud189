@@ -2,7 +2,7 @@ import {message} from './message'
 import {drawPrizeMarketDetails} from "./services"
 
 export const spaceDraw = async (config: any) => {
-    const {prizeName} = await drawPrizeMarketDetails({
+    const {errorCode, prizeName} = await drawPrizeMarketDetails({
         params: {
             taskId: config,
             activityId: "ACT_SIGNIN",
@@ -12,5 +12,9 @@ export const spaceDraw = async (config: any) => {
             Cookie: process.env.COOKIE
         }
     })
+    if (errorCode === "User_Not_Chance") {
+        message.info('📦【空间抽奖】已抽奖')
+        return
+    }
     prizeName && message.info(`📦【抽奖】${prizeName}`)
 }
