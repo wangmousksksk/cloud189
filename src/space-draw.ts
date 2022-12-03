@@ -9,12 +9,12 @@ export const spaceDraw = async (config: any) => {
             noCache: Math.random()
         },
         headers: {
-            Cookie: process.env.COOKIE
+            Cookie: process.env.COOKIE,
         }
     })
     if (errorCode === "User_Not_Chance") {
-        message.info('📦【空间抽奖】已抽奖')
+        message.info('🎉【抽奖】已抽奖')
         return
     }
-    prizeName && message.info(`📦【抽奖】${prizeName}`)
+    prizeName && message.info(`🎉【抽奖】${prizeName}`)
 }
