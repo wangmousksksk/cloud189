@@ -6,6 +6,7 @@
 | 抽奖         | ✅    | `COOKIE`         |
 | 抽奖         | ✅    | `COOKIE`         |
 每日收益：100M+ 
+![img.png](assets/img.png)
 ## LICENSE
 MIT
 
