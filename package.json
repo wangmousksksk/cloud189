@@ -31,6 +31,7 @@
     "father": "4.1.0"
   },
   "dependencies": {
+    "@hudiemon/await-to": "0.0.5",
     "@hudiemon/utils": "0.0.3",
     "@hudiemon/webhook": "0.0.6",
     "axios": "1.1.3",
