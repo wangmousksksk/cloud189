@@ -1,11 +1,13 @@
 # ![logo](assets/logo.png)
-## 👉 [设置 github action 保姆级教程](https://github.com/hudiemon/course/blob/main/README.md)👈
-| 任务名称      | 支持情况 | Secrets          |
-|-----------|------|------------------|
-| 签到        | ✅    | `COOKIE`         |
-| 抽奖        | ✅    | `COOKIE`         |
-| 抽奖        | ✅    | `COOKIE`         |
-| 飞书webhook | ✅    | `WEBHOOK_FEISHU` |
+## 如何获取cookie
+第一步：打开 https://cloud.189.cn/ 登录。   
+第二步：打开开发者工具，找到**Cookie**中的**COOKIE_LOGIN_USER**。 
+
+**Cookie**的一般格式为**COOKIE_LOGIN_USER=B7BC623BACE7B3389FFF4E270**。（长短不定）
+## 教程
+第一步：点击**Star**，然后点击**Fork**，**Fork**一份代码到自己仓库。    
+第二步：点击**Settings**，展开**Secrets and variables**，点击**Actions**。   
+第三步：点击**New repository secret**，**Name**写**COOKIE**，**Secret**写**Cookie**的值。
 ## 运行结果示例
 ```
 天翼云盘
@@ -17,9 +19,6 @@
 🔋【网盘容量】200.409 MB / 30.387 GB
 ```
 每日收益约：100M+
-
-## cookie
-![img.png](assets/img.png)
 
 ## 免责声明
 1. 本仓库发布的脚本及其中涉及的任何解锁和解密分析脚本，仅用于测试和学习研究，禁止用于商业用途，不能保证其合法性，准确性，完整性和有效性，请根据情况自行判断。
