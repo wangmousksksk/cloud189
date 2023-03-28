@@ -1,30 +1,25 @@
-import fill from "lodash/fill"
+import to from 'await-to-js'
 import {message} from "./message"
 import {checkIn} from "./check-in"
-import to from '@hudiemon/await-to'
-import {userinfo} from "./userinfo"
 import BigNumber from "bignumber.js"
 import {spaceDraw} from "./space-draw"
 import {toBytesUnit} from "@hudiemon/utils"
+import {getUserInfoForPortal} from "./services";
 
 export const main = async () => {
     if (!process.env.COOKIE) {
         message.error('【secrets.COOKIE】未设置')
         return
     }
-
-    const userinfoRes = await to(userinfo())
-    if(userinfoRes.error?.errorCode === "InvalidSessionKey"){
-        message.error(`【cookie】过期或不正确`)
-        return
-    }
-    message.info(`👤【用户】${fill(userinfoRes.data.loginName.split(''), '*', 3, 7).join('')}`)
-    await checkIn()
-    await spaceDraw("TASK_SIGNIN")
-    await spaceDraw("TASK_SIGNIN_PHOTOS")
-    const {available, capacity} = await userinfo()
-    message.info(`📈【容量提升】${new BigNumber(capacity).minus(userinfoRes.data.capacity).div(capacity).multipliedBy(100).toFixed(3)}%`)
-    message.info(`🔋【网盘容量】${toBytesUnit(new BigNumber(capacity).minus(available).toNumber())} / ${toBytesUnit(capacity)}`)
+    const userinfo = await getUserInfoForPortal();
+    message.info(`👤【用户】${userinfo.loginName.replace(/(\d{3})\d{4}(\d{4})/, '$1****$2')}`);
+    await to(checkIn());
+    await to(spaceDraw("TASK_SIGNIN"));
+    await to(spaceDraw("TASK_SIGNIN_PHOTOS"));
+    await to(spaceDraw("TASK_2022_FLDFS_KJ"));
+    const lastUserinfo = await getUserInfoForPortal();
+    message.info(`📈【容量提升】${toBytesUnit(new BigNumber(lastUserinfo.capacity).minus(userinfo.capacity).toNumber())}M`);
+    message.info(`🔋【网盘容量】${toBytesUnit(new BigNumber(lastUserinfo.capacity).minus(lastUserinfo.available).toNumber())} / ${toBytesUnit(lastUserinfo.capacity)}`);
 
 }
 main().finally(message.finally)

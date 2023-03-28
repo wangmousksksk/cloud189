@@ -1,4 +1,6 @@
-import axios from 'axios'
+import axios from 'axios';
+import {message} from "./message";
+import {errorText} from './error-text';
 
 export const request = axios.create({
     headers: {
@@ -6,5 +8,12 @@ export const request = axios.create({
     }
 });
 
-request.interceptors.response.use((response) => response.data,
-    (error) => Promise.reject(error.response.data));
+request.interceptors.response.use(
+    (response) => {
+        return response.data
+    },
+    (error) => {
+        const {errorCode} = error.response.data;
+        message.error(errorText[errorCode])
+        return Promise.reject(errorText[errorCode]);
+    });
