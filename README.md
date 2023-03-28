@@ -7,7 +7,8 @@
 ## 教程
 第一步：点击**Star**，然后点击**Fork**，**Fork**一份代码到自己仓库。    
 第二步：点击**Settings**，展开**Secrets and variables**，点击**Actions**。   
-第三步：点击**New repository secret**，**Name**写**COOKIE**，**Secret**写**Cookie**的值。
+第三步：点击**New repository secret**，**Name**写**COOKIE**，**Secret**写**Cookie**的值。   
+⚠️ 首次需要点击**Actions**，手动执行任务。
 ## 运行结果示例
 ```
 天翼云盘
